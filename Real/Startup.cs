@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Real.Data;
 using Microsoft.Extensions;
 using Microsoft.Extensions.Configuration;
+using Real.Configuration;
 using Real.Repositories;
 
 namespace Real
@@ -27,9 +28,7 @@ namespace Real
         {
            services.AddDbContext<RealDbContext>(options => 
                 options.UseSqlServer(Configuration["Data:Real:ConnectionStrings"]));
-
             services.AddTransient<IVilleRepository, VilleRepository>();
-
             services.AddMvc();
           
         }
@@ -42,9 +41,20 @@ namespace Real
                 app.UseDeveloperExceptionPage();
                 app.UseStatusCodePages();
                 app.UseDeveloperExceptionPage();
+                //app.UseBrowserLink();
+            }
+            else
+            {
+                app.UseExceptionHandler("/ExeptionLibrart/Error");
             }
 
+            // we call the middleware to check if the time after 18 and prevent the access to the website
+            app.UseMiddleware<ContentMiddlewareAfterHour>();
+
             app.UseStaticFiles();
+
+
+            // always called last
             app.UseMvc(options =>
                         {
                             options.MapRoute(
@@ -52,6 +62,18 @@ namespace Real
                                 template : "{Villes}/{Index}/{id?}",
                                 defaults : new { controller ="Villes", action="Index"}
                                     );
+
+                            options.MapRoute(
+                                name: null,
+                                template: "/",
+                                defaults: new { controller = "Villes", action = "Index" }
+                            );
+
+                            options.MapRoute(
+                                name: null,
+                                template: "",
+                                defaults: new { controller = "Villes", action = "Index" }
+                            );
 
                             options.MapRoute(
                                 name: null,
