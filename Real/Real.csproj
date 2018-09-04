@@ -13,7 +13,6 @@
     <Folder Include="Areas\Users\Views\" />
     <Folder Include="Infrastructure\" />
     <Folder Include="Components\" />
-    <Folder Include="wwwroot\" />
   </ItemGroup>
 
   <ItemGroup>
