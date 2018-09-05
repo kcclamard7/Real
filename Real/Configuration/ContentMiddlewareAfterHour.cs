@@ -18,7 +18,7 @@ namespace Real.Configuration
         //public TimeChecker timechecker ;
 
         //public ContentMiddlewareAfterHourController( RequestDelegate next, TimeChecker checker)
-        public ContentMiddlewareAfterHour(RequestDelegate next)
+       public ContentMiddlewareAfterHour(RequestDelegate next)
         { 
             //this.timechecker = checker;
             nextDelegate = next;
@@ -27,7 +27,7 @@ namespace Real.Configuration
         public async Task Invoke(HttpContext httpContext)
         {
             //if (timechecker.isRegularTime() == false)
-            if(DateTime.Now.Hour > 20)
+            if(DateTime.Now.Hour == 20)
             {
                 await httpContext.Response.WriteAsync("The Website Is not Accessible now \n Please try during regular hours");
             }
