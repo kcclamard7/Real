@@ -6,3 +6,4 @@ Agencies management
 Agents management
 Clients management
 Commissions management per transaction and Agency base of predefined rate.
+Generate report based on specific date interval (monthly, weekly  and daily report)
