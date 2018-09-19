@@ -11,11 +11,6 @@
 
 
   <ItemGroup>
-    <Folder Include="Areas\Managers\" />
-    <Folder Include="Areas\Supervisors\" />
-    <Folder Include="Areas\Users\Controllers\" />
-    <Folder Include="Areas\Users\Models\" />
-    <Folder Include="Areas\Users\Views\" />
     <Folder Include="Infrastructure\" />
     <Folder Include="Components\" />
   </ItemGroup>
